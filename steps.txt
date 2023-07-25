@@ -1,0 +1,39 @@
+create a repo on github
+clone it to computer
+then open CMD on project folder and type: "   npx create-expo-app .   "
+
+1. Install React Navigation
+
+npm install react-navigation --legacy-peer-deps
+
+2. Install Dependencies
+
+npx expo install "react-native-gesture-handler" "react-native-reanimated" "react-native-screens" "react-native-safe-area-context" "@react-native-community/masked-view" -- --legacy-peer-deps
+
+3. Install React Navigation Stack
+
+npm install "react-navigation-stack" "@react-native-community/masked-view" --legacy-peer-deps
+
+4.More deps for expo web support:
+npx expo install "react-native-web@~0.18.10" "react-dom@18.2.0" "@expo/webpack-config@^18.0.1"
+
+
+4. Find the babel.config.js file and add the following line to the return:
+
+    plugins: ["react-native-reanimated/plugin"],
+
+Updated babel.config.js:
+
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ["babel-preset-expo"],
+    plugins: ["react-native-reanimated/plugin"],
+  };
+};
+
+5. Update Imports
+imports should look like this:
+
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
