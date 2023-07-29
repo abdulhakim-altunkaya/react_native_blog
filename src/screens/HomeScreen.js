@@ -1,10 +1,27 @@
-import React, {useState, useEffect} from "react";
-import {View, Text, StyleSheet, ScrollView } from "react-native";
+import React, {useState, useContext} from "react";
+import {View, Text, StyleSheet, ScrollView, FlatList, Button } from "react-native";
+import BlogContext from "../context/BlogContext";
 
 function HomeScreen() {
+  const {name, age, blogs, addBlog} = useContext(BlogContext);
+
   return (
     <View>
-      <Text style={styles.mainContainer}>yukyukyukyukyuk</Text>
+      <Text style={styles.mainContainer}>{name}</Text>
+      <Text>{age}</Text>
+      <FlatList 
+        data={blogs}
+        keyExtractor={(element) => element}
+        renderItem={({item}) => {
+          return(
+            <Text>{item.title}</Text>
+          )
+        }}
+        />
+      <Text>{blogs[1].title}</Text>
+      <Button
+            title='Add a New Blog'
+            onPress={addBlog} />
     </View>
   )
 }
