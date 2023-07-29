@@ -4,7 +4,6 @@ import { BlogProvider } from './src/context/BlogContext';
 import BlogDetails from "./src/screens/BlogDetails";
 import HomeScreen from "./src/screens/HomeScreen";
 
-
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,

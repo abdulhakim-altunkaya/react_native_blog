@@ -1,16 +1,16 @@
+
+
 import React, {useState, useContext} from "react";
 import {View, Text, StyleSheet, ScrollView, FlatList, Button } from "react-native";
-import BlogContext from "../context/BlogContext";
+import {Context} from "../context/BlogContext";
 
 function HomeScreen() {
-  const {name, age, blogs, addBlog} = useContext(BlogContext);
+  const {state2, addBlog} = useContext(Context);
 
   return (
     <View>
-      <Text style={styles.mainContainer}>{name}</Text>
-      <Text>{age}</Text>
       <FlatList 
-        data={blogs}
+        data={state2}
         keyExtractor={(element) => element}
         renderItem={({item}) => {
           return(
@@ -18,7 +18,6 @@ function HomeScreen() {
           )
         }}
         />
-      <Text>{blogs[1].title}</Text>
       <Button
             title='Add a new blog'
             onPress={addBlog} />
@@ -34,4 +33,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default HomeScreen;
+export default HomeScreen
