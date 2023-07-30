@@ -11,10 +11,13 @@ function HomeScreen() {
       <Text>{age}</Text>
       <FlatList 
         data={blogs}
-        keyExtractor={(element) => element}
+        keyExtractor={(element) => element.key}
         renderItem={({item}) => {
           return(
-            <Text>{item.title}</Text>
+            <>
+              <Text>{item.title}</Text>
+              <Text>{item.key}</Text>
+            </>
           )
         }}
         />
