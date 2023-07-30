@@ -15,6 +15,10 @@ const blogReducer = (state, action) => {
   switch (action.type) {
     case "ADD_BLOG_POST":
       return [...state, { title: `blog post #${state.length + 1}`, key: generateRandomId() }];
+    case "DELETE_BLOG":
+      let blogs = [...state];
+      let blogs2 = blogs.filter( (blog) => blog.key !== action.payload );
+      return blogs2;
     default:
       return state;
   }
@@ -38,10 +42,13 @@ export const BlogProvider = ({ children }) => {
   const addBlogPost = () => {
     dispatch({ type: "ADD_BLOG_POST" });
   };
+  const deleteBlogPost = (blogId) => {
+    dispatch({ type: "DELETE_BLOG", payload: blogId });
+  };
 
   return (
     <BlogContext.Provider
-      value={{ name: "hamido, sukriya, ayşo, cano, hazniyo", age: 36, blogs: blogPosts, addBlog: addBlogPost }}
+      value={{ name: "hamido, sukriya, ayşo, cano, hazniyo", age: 36, blogs: blogPosts, addBlog: addBlogPost, deleteBlog: deleteBlogPost }}
     >
       {children}
     </BlogContext.Provider>

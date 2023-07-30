@@ -3,11 +3,13 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { BlogProvider } from './src/context/BlogContext';
 import BlogDetails from "./src/screens/BlogDetails";
 import HomeScreen from "./src/screens/HomeScreen";
+import CreateScreen from "./src/screens/CreateScreen";
 
 const navigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Details: BlogDetails,
+    details: BlogDetails,
+    create: CreateScreen,
   },
   {
     initialRouteName: "Home",
