@@ -14,11 +14,13 @@ const generateRandomId = () => {
 const blogReducer = (state, action) => {
   switch (action.type) {
     case "ADD_BLOG_POST":
-      return [...state, { title: `blog post #${state.length + 1}`, key: generateRandomId() }];
+      return [...state, { title: `blog post #${state.length + 1}`, text:"default text", key: generateRandomId() }];
     case "DELETE_BLOG":
       let blogs = [...state];
       let blogs2 = blogs.filter( (blog) => blog.key !== action.payload );
       return blogs2;
+    case "SAVE_BLOG":
+      return [...state, { title: action.payload.blogTitle, text:action.payload.blogText, key: generateRandomId() }];
     default:
       return state;
   }
@@ -27,11 +29,8 @@ const blogReducer = (state, action) => {
 
 
 const initialState = [
-  { title: "blog post #1", key: "1af" },
-  { title: "blog post #2", key: "1a3" },
-  { title: "blog post #3", key: "1ag" },
-  { title: "blog post #4", key: "1ah" },
-  { title: "blog post #5", key: "1aj" },
+  { title: "blog post #1", text: "Hello ssome text ffrom blog 1", key: "1af" },
+  { title: "blog post #2", text: "Hello ssome text ffrom blog 2", key: "1a3" },
 ];
 
 const BlogContext = createContext();
@@ -45,10 +44,14 @@ export const BlogProvider = ({ children }) => {
   const deleteBlogPost = (blogId) => {
     dispatch({ type: "DELETE_BLOG", payload: blogId });
   };
+  const saveBlogPost = (blogTitle, blogText) => {
+    dispatch({ type: "SAVE_BLOG", payload: {blogText, blogTitle}})
+  }
 
   return (
     <BlogContext.Provider
-      value={{ name: "hamido, sukriya, ayşo, cano, hazniyo", age: 36, blogs: blogPosts, addBlog: addBlogPost, deleteBlog: deleteBlogPost }}
+      value={{ name: "hamido, sukriya, ayşo, cano, hazniyo", age: 36, blogs: blogPosts, addBlog: addBlogPost, 
+      deleteBlog: deleteBlogPost, saveBlog: saveBlogPost  }}
     >
       {children}
     </BlogContext.Provider>

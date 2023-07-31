@@ -17,11 +17,13 @@ function BlogDetails(props) {
 
   return (
     <View>
-      
+      <Text style={styles.details}>FIRST WAY TO DISPLAY BLOGS: getParam</Text>
       <Text style={styles.blogTitle}>{blogTitle2}</Text>
-      <Text style={styles.details}>details of {blogId}</Text>
-
-      <Text style={styles.blogTitle}>Second way to display blog: {blogPost.title}</Text>
+      <Text style={styles.blogId}>details of {blogId}</Text>
+      <Text style={styles.details}>SECOND WAY TO DISPLAY BLOGS: useContext</Text>
+      <Text style={styles.blogTitle}>{blogPost.title}</Text>
+      <Text style={styles.blogId}>{blogPost.key}</Text>
+      <Text style={styles.blogText}>{blogPost.text}</Text>
     </View>
   )
 }
@@ -29,11 +31,20 @@ function BlogDetails(props) {
 const styles = StyleSheet.create({
   details: {
     color: "red",
+    fontWeight: "800",
   },
   blogTitle: {
     fontSize: 24,
-    fontWeight: "800",
-  }
+    fontWeight: "700",
+  },
+  blogId: {
+    fontSize: 12,
+    fontStyle: "italic",
+  },
+  blogText: {
+    fontSize: 18,
+  },
+
 
 })
 

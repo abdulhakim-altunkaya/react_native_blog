@@ -2,7 +2,7 @@ import React, {useState, useContext} from "react";
 import {View, Text, StyleSheet, TouchableOpacity, FlatList, Button } from "react-native";
 import BlogContext from "../context/BlogContext";
 import { FontAwesome5 } from '@expo/vector-icons';
-
+import { Entypo } from '@expo/vector-icons';
 
 function HomeScreen(props) {
   const {name, age, blogs, addBlog, deleteBlog} = useContext(BlogContext);
@@ -41,6 +41,16 @@ function HomeScreen(props) {
             onPress={addBlog} />
     </View>
   )
+}
+
+HomeScreen.navigationOptions = (props) => {
+  return{
+    headerRight: () => (
+      <TouchableOpacity onPress={() => props.navigation.navigate('create')}>
+        <Entypo name="squared-plus" size={24} color="#b15900" />
+      </TouchableOpacity>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
