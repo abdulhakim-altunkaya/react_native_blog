@@ -1,5 +1,3 @@
-
-
 import React, {useState, useContext} from "react";
 import {View, Text, StyleSheet, ScrollView, FlatList, Button } from "react-native";
 import {Context} from "../context/BlogContext";
@@ -26,11 +24,6 @@ function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    fontWeight: "bold",
-  },
-
 })
 
 export default HomeScreen

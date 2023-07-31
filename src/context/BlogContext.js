@@ -21,6 +21,15 @@ const blogReducer = (state, action) => {
       return blogs2;
     case "SAVE_BLOG":
       return [...state, { title: action.payload.blogTitle, text:action.payload.blogText, key: generateRandomId() }];
+    case "UPDATE_BLOG":
+      const updatedBlogs = state.map((blog) => {
+        if(blog.key === action.payload.blogId) {
+          return {...blog, title: action.payload.blogTitle, text: action.payload.blogText}
+        } else {
+          return blog;
+        }
+      })
+      return updatedBlogs;
     default:
       return state;
   }
@@ -47,11 +56,14 @@ export const BlogProvider = ({ children }) => {
   const saveBlogPost = (blogTitle, blogText) => {
     dispatch({ type: "SAVE_BLOG", payload: {blogText, blogTitle}})
   }
+  const updateBlogPost = (blogTitle, blogText, blogId) => {
+    dispatch({ type: "UPDATE_BLOG", payload: {blogTitle, blogText, blogId}})
+  }
 
   return (
     <BlogContext.Provider
       value={{ name: "hamido, sukriya, ayşo, cano, hazniyo", age: 36, blogs: blogPosts, addBlog: addBlogPost, 
-      deleteBlog: deleteBlogPost, saveBlog: saveBlogPost  }}
+      deleteBlog: deleteBlogPost, saveBlog: saveBlogPost, updateBlog: updateBlogPost  }}
     >
       {children}
     </BlogContext.Provider>

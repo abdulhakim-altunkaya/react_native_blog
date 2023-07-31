@@ -47,7 +47,7 @@ HomeScreen.navigationOptions = (props) => {
   return{
     headerRight: () => (
       <TouchableOpacity onPress={() => props.navigation.navigate('create')}>
-        <Entypo name="squared-plus" size={24} color="#b15900" />
+        <Entypo name="squared-plus" style={styles.iconStyle} />
       </TouchableOpacity>
     )
   }
@@ -78,6 +78,11 @@ const styles = StyleSheet.create({
   },
   notificationStyle: {
     fontFamily: 'sans-serif',
+  },
+  iconStyle: {
+    marginRight: 10,
+    fontSize: 30,
+    color: "#b15900",
   },
 
 })

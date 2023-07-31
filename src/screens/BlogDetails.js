@@ -1,8 +1,11 @@
 import React, {useState, useContext} from "react";
-import {View, Text, StyleSheet, ScrollView } from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 
 //this import is for second way
 import BlogContext from "../context/BlogContext";
+
+
 
 function BlogDetails(props) {
   //way-1: directly getting data from route params
@@ -15,6 +18,7 @@ function BlogDetails(props) {
     targetBlog => targetBlog.key === blogId
   )
 
+
   return (
     <View>
       <Text style={styles.details}>FIRST WAY TO DISPLAY BLOGS: getParam</Text>
@@ -26,6 +30,17 @@ function BlogDetails(props) {
       <Text style={styles.blogText}>{blogPost.text}</Text>
     </View>
   )
+}
+
+BlogDetails.navigationOptions = (props) => {
+  const blogId = props.navigation.getParam("id");
+  return{
+    headerRight: () => (
+      <TouchableOpacity onPress={() => props.navigation.navigate('edit', {id: blogId})}>
+        <AntDesign name="edit" style={styles.iconStyle} />
+      </TouchableOpacity>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
@@ -44,8 +59,13 @@ const styles = StyleSheet.create({
   blogText: {
     fontSize: 18,
   },
-
+  iconStyle: {
+    marginRight: 10,
+    fontSize: 33,
+    color: "#307d03",
+  },
 
 })
 
 export default BlogDetails
+
